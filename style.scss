@@ -121,3 +121,77 @@ $val_08: 200px,40px;
   @extend %box_09_2;
   background-color: yellow;
 }
+
+/*
+10. @extend %●●● 多重継承
+*/
+%txt{
+  font-size: 14px;
+}
+%txt_red{
+  @extend %txt;
+  color: red;
+}
+.class_10{
+  @extend %txt_red;
+}
+
+/*
+11.
+*/
+$IMG_PATH: "../img/";
+$SELECTOR: '.box,.item';
+
+#{$SELECTOR} {
+  $height: 100px;
+  $line-count: 10;
+  background-image: url(#{$IMG_PATH}bg.png);
+  // 計算させたくない
+  line-height: #{$height} / #{$line-count};
+}
+@for $i from 0 to 2 {
+  .mt#{$i * 5}{
+    margin-top: 5px * $i;
+  }
+}
+
+// ダブルクオーテーションの２重防止
+$text_11: "CSS";
+.text{
+  content: "#{$text_11} and Sass";
+}
+
+// 親セレクタ名を保存してネストの中で使いたい
+.goto{
+  $first: &;
+  .kensuke{
+    #{$first}{
+      p{
+        font-size: 5px;
+      }
+    }
+  }
+}
+
+/*
+12.
+*/
+// 3を含む
+@for $i from 1 through 3{ }
+// 3を含まない
+@for $i from 1 to 3{ }
+
+$x: 0;
+@while ($x < 10){
+  // 処理
+  $x: $x + 1;
+}
+
+// 配列
+$icons: top,qa,contact;
+$IMG_PATH2: "../img/";
+@each $value in $icons {
+  .icon-#{$value} {
+    background: url("#{$IMG_PATH2}#{$value}.png");
+  }
+}

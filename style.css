@@ -103,3 +103,53 @@ font(,16px) のようには書けない
 .class_09_2 {
   background-color: yellow;
 }
+
+/*
+10. @extend %●●● 多重継承
+*/
+.class_10 {
+  font-size: 14px;
+}
+
+.class_10 {
+  color: red;
+}
+
+/*
+11.
+*/
+.box, .item {
+  background-image: url(../img/bg.png);
+  line-height: 100px / 10;
+}
+
+.mt0 {
+  margin-top: 0px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+
+.text {
+  content: "CSS and Sass";
+}
+
+.goto .kensuke .goto p {
+  font-size: 5px;
+}
+
+/*
+12.
+*/
+.icon-top {
+  background: url("../img/top.png");
+}
+
+.icon-qa {
+  background: url("../img/qa.png");
+}
+
+.icon-contact {
+  background: url("../img/contact.png");
+}
