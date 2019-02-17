@@ -1,0 +1,121 @@
+/*
+1. 親要素の参照は「&」を必ずしも使わないで良い
+*/
+.class_01{
+  + div{
+    font-size: 1em;
+  }
+  > .child{
+    font-size: 2em;
+  }
+}
+
+/*
+2. ルート要素の更に上の親要素を指定したい
+*/
+aside{
+  width: 240px;
+  .menu{
+    margin-bottom: 20px;
+  }
+  main.full & .child{
+    width: 960px;
+  }
+}
+
+/*
+3. ルート要素を抜けたい
+*/
+.class_03{
+  section{
+    width: 640px;
+    @at-root {
+      .class_03_2{
+        width: 100px;
+      }
+    }
+  }
+}
+
+/*
+4. プロパティのネスト
+*/
+.class_04{
+  border: 0{ // border:半角スペースが必要
+    bottom: 1px solid #aaa;
+  }
+}
+
+/*
+5. ミックスイン
+*/
+@mixin roundBox{
+  border-radius: 10px;
+  background-color: #ededed;
+  bottom: 1px solid #666;
+}
+.class_05{
+  @include roundBox;
+}
+
+/*
+6. ミックスイン 複数の引数
+font(,16px) のようには書けない
+*/
+@mixin font($color:red,$size:12px){
+  color: $color;
+  font-size: $size;
+}
+.class_06{
+  @include font($size: 16px);
+}
+
+/*
+7. 可変長引数 受け取り側を可変にする（ES6に同じ）
+*/
+@mixin shadow ($value...){
+  text-shadow: $value;
+}
+.class_07{
+  @include shadow(
+    8px 8px 0 #666,
+    10px -10px 0 #999
+  );
+}
+
+/*
+8. 可変長引数 呼び出し側で展開（ES6に同じ）
+*/
+@mixin box ($w:300px, $pd:20px,$mg:40px,$clr:#f00){
+  width: $w;
+  padding: $pd;
+  margin: $mg;
+  color: $clr;
+}
+$val_08: 200px,40px;
+.class_08{
+  @include box($val_08...);
+}
+
+/*
+9. @extend 継承
+*/
+// 継承元もCSSに書きだされる
+.box_09{
+  padding: 20px;
+  border: 1px solid #000;  
+}
+.class_09{
+  @extend .box_09;
+  background-color: yellow;
+}
+
+// 継承元はCSSに書きだされない
+%box_09_2{
+  padding: 20px;
+  border: 1px solid #000;  
+}
+.class_09_2{
+  @extend %box_09_2;
+  background-color: yellow;
+}
