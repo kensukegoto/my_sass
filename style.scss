@@ -137,7 +137,7 @@ $val_08: 200px,40px;
 }
 
 /*
-11.
+11. インターポレーション
 */
 $IMG_PATH: "../img/";
 $SELECTOR: '.box,.item';
@@ -194,4 +194,70 @@ $IMG_PATH2: "../img/";
   .icon-#{$value} {
     background: url("#{$IMG_PATH2}#{$value}.png");
   }
+}
+
+// 配列（マップ型）
+$my_map: (
+  bgcolor: #ededed,
+  fontcolor: #ff0000,
+  bdcolor: #000
+);
+
+.mapget {
+  color: map-get($my_map, fontcolor)
+}
+
+// ユーザー定義関数 (呼び出し時に (,150)というのは無理）
+@function sum($val1:50px,$val2:50px){
+  @return $val1 + $val2;
+}
+.sum{
+  width: sum(100px,200px);
+  height: sum();
+}
+
+$name: "kensuke";
+#name{
+  content: $name + "さん";
+}
+##{$name}{
+  font-size: 60px;
+}
+
+@mixin linkArrow($side:"right",$color:"#aaa"){
+
+  @if($side!="right" and $side!="left"){
+    @warn "引数は「right」か「left」です。";
+  }
+  position: relative;
+
+  @if($side=="right"){
+    padding-right: 20px;
+  } @else if($side=="left"){
+    padding-left: 20px;
+  }
+
+  &::after{
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 50%;
+    @if($side=="right"){
+      right: 10px;
+    } @else if($side=="left"){
+      left: 10px;
+    }
+
+    margin-top: -2.5px;
+    border-top: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+    transform: rotate(45deg);
+  }
+
+}
+
+.read_more{
+  @include linkArrow("left",#333);
 }

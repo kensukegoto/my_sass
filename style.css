@@ -116,7 +116,7 @@ font(,16px) のようには書けない
 }
 
 /*
-11.
+11. インターポレーション
 */
 .box, .item {
   background-image: url(../img/bg.png);
@@ -152,4 +152,40 @@ font(,16px) のようには書けない
 
 .icon-contact {
   background: url("../img/contact.png");
+}
+
+.mapget {
+  color: #ff0000;
+}
+
+.sum {
+  width: 300px;
+  height: 100px;
+}
+
+#name {
+  content: "kensukeさん";
+}
+
+#kensuke {
+  font-size: 60px;
+}
+
+.read_more {
+  position: relative;
+  padding-left: 20px;
+}
+
+.read_more::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin-top: -2.5px;
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  transform: rotate(45deg);
 }
